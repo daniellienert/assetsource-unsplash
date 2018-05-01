@@ -1,0 +1,21 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "dl/assetsource-unsplash",
+    "require": {
+        "neos/neos": "^4.0",
+        "neos/media": "*",
+        "unsplash/unsplash": "^2.4",
+        "behat/transliterator": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "DL\\AssetSource\\Unsplash\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "DL.AssetSource.Unsplash"
+        }
+    }
+}

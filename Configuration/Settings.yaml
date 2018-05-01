@@ -1,0 +1,8 @@
+Neos:
+  Media:
+    assetSources:
+      unsplash:
+        assetSource: 'DL\AssetSource\Unsplash\AssetSource\UnsplashAssetSource'
+        assetSourceOptions:
+          accessKey: your-access-kexy
+          utmSource: Neos CMS Unsplash Asset Source
