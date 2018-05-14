@@ -77,7 +77,7 @@ final class UnsplashAssetProxyQueryResult implements AssetProxyQueryResultInterf
      */
     public function toArray(): array
     {
-        throw new \Exception(__METHOD__ . 'is not yet implemented');
+        return $this->unsplashQueryResult->getArrayCopy();
     }
 
     /**
@@ -202,7 +202,7 @@ final class UnsplashAssetProxyQueryResult implements AssetProxyQueryResultInterf
      */
     public function offsetUnset($offset)
     {
-        throw new \Exception(__METHOD__ . 'is not yet implemented');
+        $this->unsplashQueryResultIterator->offsetUnset($offset);
     }
 
     /**
@@ -216,6 +216,6 @@ final class UnsplashAssetProxyQueryResult implements AssetProxyQueryResultInterf
      */
     public function count()
     {
-        return $this->unsplashQueryResult->count();
+        return $this->unsplashQueryResult->totalObjects();
     }
 }

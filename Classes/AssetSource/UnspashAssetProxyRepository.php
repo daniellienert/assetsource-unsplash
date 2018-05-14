@@ -66,6 +66,7 @@ final class UnspashAssetProxyRepository implements AssetProxyRepositoryInterface
      * @param string $searchTerm
      * @return AssetProxyQueryResultInterface
      * @throws AssetSourceConnectionExceptionInterface
+     * @throws \Exception
      */
     public function findBySearchTerm(string $searchTerm): AssetProxyQueryResultInterface
     {
@@ -98,6 +99,6 @@ final class UnspashAssetProxyRepository implements AssetProxyRepositoryInterface
      */
     public function countAll(): int
     {
-        return 30;
+        return 500000;
     }
 }
