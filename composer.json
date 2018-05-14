@@ -1,7 +1,8 @@
 {
-    "description": "",
+    "description": "Unsplash Asset Source for Neos CMS - https://www.unsplash.com/",
     "type": "neos-package",
     "name": "dl/assetsource-unsplash",
+    "license": "MIT",
     "require": {
         "neos/neos": "^4.0",
         "neos/media": "*",
