@@ -257,7 +257,8 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
         if ($this->iptcProperties === null) {
             $this->iptcProperties = [
                 'Title' => $this->getLabel(),
-                'CopyrightNotice' => sprintf('Photo by %s on Unsplash', $this->photo->user['name'])
+                'CopyrightNotice' => sprintf('Photo by %s on Unsplash', $this->photo->user['name']),
+                'Creator' => $this->photo->user['name']
             ];
         }
 
