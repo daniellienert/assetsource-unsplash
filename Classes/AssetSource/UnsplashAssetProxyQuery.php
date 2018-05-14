@@ -117,6 +117,6 @@ final class UnsplashAssetProxyQuery implements AssetProxyQueryInterface
      */
     public function count(): int
     {
-        throw new \Exception(__METHOD__ . 'is not yet implemented');
+        throw new \Exception(__METHOD__ . ' is not yet implemented');
     }
 }
