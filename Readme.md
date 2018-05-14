@@ -4,7 +4,7 @@
 
 ## How to use it
 
-1. Install the package via composer `composer require dl/assetsource-pexels`
+1. Install the package via composer `composer require dl/assetsource-unsplash`
 2. Read the [Unsplash API guidelines](https://medium.com/unsplash/unsplash-api-guidelines-28e0216e6daa) carefully!
 3. Register on [https://unsplash.com/developers](https://unsplash.com/developers) and get your API key.
 4. Configure the API key in the settings
