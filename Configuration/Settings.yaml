@@ -4,5 +4,5 @@ Neos:
       unsplash:
         assetSource: 'DL\AssetSource\Unsplash\AssetSource\UnsplashAssetSource'
         assetSourceOptions:
-          accessKey: your-access-kexy
+          accessKey: your-access-key
           utmSource: Neos CMS Unsplash Asset Source

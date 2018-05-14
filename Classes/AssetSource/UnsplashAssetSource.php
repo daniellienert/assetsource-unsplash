@@ -1,6 +1,15 @@
 <?php
 namespace DL\AssetSource\Unsplash\AssetSource;
 
+/*
+ * This file is part of the DL.AssetSource.Unsplash package.
+ *
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
+
+use Neos\Flow\Configuration\Exception\InvalidConfigurationException;
 use Neos\Media\Domain\Model\AssetSource\AssetProxyRepositoryInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetSourceInterface;
 use Neos\Media\Domain\Model\AssetSource\Neos\NeosAssetProxyRepository;
@@ -18,14 +27,23 @@ final class UnsplashAssetSource implements AssetSourceInterface
      */
     private $assetProxyRepository;
 
-
+    /**
+     * UnsplashAssetSource constructor.
+     * @param string $assetSourceIdentifier
+     * @param array $assetSourceOptions
+     * @throws InvalidConfigurationException
+     */
     public function __construct(string $assetSourceIdentifier, array $assetSourceOptions)
     {
         $this->assetSourceIdentifier = $assetSourceIdentifier;
 
+        if (!isset($assetSourceOptions['accessKey']) || trim($assetSourceOptions['accessKey']) === '') {
+            throw new InvalidConfigurationException(sprintf('Access Key for the %s data source not set.',$this->getLabel()), 1526326192);
+        }
+
         Unsplash\HttpClient::init([
-            'applicationId'	=> '54bee8d2d0cbb26ac17403bd6bfc9b3dbbe7996f897ce1d8f5be8dd4abe25b2c',
-            'utmSource' => 'Neos CMS Asset Source Development'
+            'applicationId' => $assetSourceOptions['accessKey'],
+            'utmSource' => $assetSourceOptions['accessKey'] ?? 'Neos CMS Asset Source Development'
         ]);
     }
 

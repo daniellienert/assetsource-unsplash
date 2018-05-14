@@ -1,11 +1,13 @@
 <?php
-
-/*
- *  (c) 2018 punkt.de GmbH - Karlsruhe, Germany - http://punkt.de
- *  All rights reserved.
- */
 namespace DL\AssetSource\Unsplash\AssetSource;
 
+/*
+ * This file is part of the DL.AssetSource.Unsplash package.
+ *
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
 
 use Crew\Unsplash\ArrayObject;
 use Crew\Unsplash\Photo;
