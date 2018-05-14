@@ -70,7 +70,8 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      */
     public function getLabel(): string
     {
-        return (string)$this->getProperty('description');
+        $label = trim((string)$this->getProperty('description'));
+        return $label !== '' ? $label : $this->getFilename();
     }
 
     /**
@@ -78,17 +79,36 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      */
     public function getFilename(): string
     {
+        $fromDescription = trim(Transliterator::urlize($this->getProperty('description')));
+        if ($fromDescription !== '') {
+            return $fromDescription . '.jpg';
+        }
+
+        $fromUrl = $this->extractNameFromUrl();
+        if ($fromUrl !== '') {
+            return $fromUrl . '.jpg';
+        }
+
+        $fromId = $this->getProperty('id');
+        if ($fromId !== '') {
+            return $fromId . '.jpg';
+        }
+
+        return '';
+    }
+
+    /**
+     * @return string
+     */
+    protected function extractNameFromUrl(): string
+    {
         $url = $this->getImageUrl(UnsplashImageSizeInterface::THUMB);
 
         if (!empty($url)) {
-            preg_match('/[^_]*\_(.*)\?.*/', $url, $matches);
+            preg_match('/[^\_]*\_([^\?]*)\?(.*)/', $url, $matches);
 
             if (isset($matches[1]) && !empty($matches[1])) {
                 return $matches[1];
-            } else {
-                $fromDescription = trim(Transliterator::urlize($this->getProperty('description')));
-                $fromId = $this->getProperty('id');
-                return (!empty($fromDescription) ? $fromDescription : $fromId) . '.jpg';
             }
         }
 
