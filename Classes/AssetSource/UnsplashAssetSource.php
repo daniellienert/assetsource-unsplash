@@ -43,7 +43,7 @@ final class UnsplashAssetSource implements AssetSourceInterface
 
         Unsplash\HttpClient::init([
             'applicationId' => $assetSourceOptions['accessKey'],
-            'utmSource' => $assetSourceOptions['accessKey'] ?? 'Neos CMS Asset Source Development'
+            'utmSource' => $assetSourceOptions['utmSource'] ?? 'Neos CMS Unsplash Asset Source https://neos.io'
         ]);
     }
 
