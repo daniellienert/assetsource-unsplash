@@ -10,3 +10,5 @@
 4. Configure the API key in the settings
 
 Please take care of the correct attribution of used photos in the frontend. 
+
+![Media Browser view](https://user-images.githubusercontent.com/642226/40078557-3bff9fee-5885-11e8-9d84-de031e1b8620.png)
