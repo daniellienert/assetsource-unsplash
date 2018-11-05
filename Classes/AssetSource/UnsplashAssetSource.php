@@ -28,6 +28,11 @@ final class UnsplashAssetSource implements AssetSourceInterface
     private $assetProxyRepository;
 
     /**
+     * @var string
+     */
+    private $copyRightNoticeTemplate;
+
+    /**
      * UnsplashAssetSource constructor.
      * @param string $assetSourceIdentifier
      * @param array $assetSourceOptions
@@ -36,9 +41,10 @@ final class UnsplashAssetSource implements AssetSourceInterface
     public function __construct(string $assetSourceIdentifier, array $assetSourceOptions)
     {
         $this->assetSourceIdentifier = $assetSourceIdentifier;
+        $this->copyRightNoticeTemplate = $assetSourceOptions['copyRightNoticeTemplate'] ?? '';
 
         if (!isset($assetSourceOptions['accessKey']) || trim($assetSourceOptions['accessKey']) === '') {
-            throw new InvalidConfigurationException(sprintf('Access Key for the %s data source not set.',$this->getLabel()), 1526326192);
+            throw new InvalidConfigurationException(sprintf('Access Key for the %s data source not set.', $this->getLabel()), 1526326192);
         }
 
         Unsplash\HttpClient::init([
@@ -54,6 +60,7 @@ final class UnsplashAssetSource implements AssetSourceInterface
      * @param string $assetSourceIdentifier
      * @param array $assetSourceOptions
      * @return AssetSourceInterface
+     * @throws InvalidConfigurationException
      */
     public static function createFromConfiguration(string $assetSourceIdentifier, array $assetSourceOptions): AssetSourceInterface
     {
@@ -77,6 +84,14 @@ final class UnsplashAssetSource implements AssetSourceInterface
     public function getLabel(): string
     {
         return 'Unsplash';
+    }
+
+    /**
+     * @return string
+     */
+    public function getCopyRightNoticeTemplate(): string
+    {
+        return $this->copyRightNoticeTemplate;
     }
 
     /**

@@ -10,6 +10,8 @@ namespace DL\AssetSource\Unsplash\AssetSource;
  */
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Eel\EelEvaluatorInterface;
+use Neos\Eel\Utility;
 use Behat\Transliterator\Transliterator;
 use Crew\Unsplash\Photo;
 use Neos\Flow\Http\Uri;
@@ -42,6 +44,18 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      * @var array
      */
     private $iptcProperties;
+
+    /**
+     * @var array
+     * @Flow\InjectConfiguration(path="defaultContext", package="Neos.Fusion")
+     */
+    protected $defaultContextConfiguration;
+
+    /**
+     * @var EelEvaluatorInterface
+     * @Flow\Inject(lazy=false)
+     */
+    protected $eelEvaluator;
 
     /**
      * UnsplashAssetProxy constructor.
@@ -230,6 +244,7 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      *
      * @param string $propertyName
      * @return bool
+     * @throws \Neos\Eel\Exception
      */
     public function hasIptcProperty(string $propertyName): bool
     {
@@ -241,6 +256,7 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      *
      * @param string $propertyName
      * @return string
+     * @throws \Neos\Eel\Exception
      */
     public function getIptcProperty(string $propertyName): string
     {
@@ -251,17 +267,28 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      * Returns all known IPTC metadata properties as key => value (e.g. "Title" => "My Photo")
      *
      * @return array
+     * @throws \Neos\Eel\Exception
      */
     public function getIptcProperties(): array
     {
         if ($this->iptcProperties === null) {
             $this->iptcProperties = [
                 'Title' => $this->getLabel(),
-                'CopyrightNotice' => sprintf('Photo by %s on Unsplash', $this->photo->user['name']),
+                'CopyrightNotice' => $this->compileCopyrightNotice($this->photo->user),
                 'Creator' => $this->photo->user['name']
             ];
         }
 
         return $this->iptcProperties;
+    }
+
+    /**
+     * @param array $userProperties
+     * @return string
+     * @throws \Neos\Eel\Exception
+     */
+    protected function compileCopyrightNotice(array $userProperties): string
+    {
+        return Utility::evaluateEelExpression($this->assetSource->getCopyRightNoticeTemplate(), $this->eelEvaluator, ['user' => $userProperties], $this->defaultContextConfiguration);
     }
 }
