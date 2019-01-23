@@ -100,7 +100,7 @@ final class UnsplashAssetSource implements AssetSourceInterface
     public function getAssetProxyRepository(): AssetProxyRepositoryInterface
     {
         if ($this->assetProxyRepository === null) {
-            $this->assetProxyRepository = new UnspashAssetProxyRepository($this);
+            $this->assetProxyRepository = new UnsplashAssetProxyRepository($this);
         }
 
         return $this->assetProxyRepository;

@@ -18,7 +18,7 @@ use Neos\Media\Domain\Model\AssetSource\AssetTypeFilter;
 use Neos\Media\Domain\Model\Tag;
 use Crew\Unsplash;
 
-final class UnspashAssetProxyRepository implements AssetProxyRepositoryInterface
+final class UnsplashAssetProxyRepository implements AssetProxyRepositoryInterface
 {
     /**
      * @var UnsplashAssetSource
