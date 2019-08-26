@@ -14,13 +14,13 @@ use Neos\Eel\EelEvaluatorInterface;
 use Neos\Eel\Utility;
 use Behat\Transliterator\Transliterator;
 use Crew\Unsplash\Photo;
-use Neos\Flow\Http\Uri;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\AssetProxyInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\HasRemoteOriginalInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\SupportsIptcMetadataInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetSourceInterface;
 use Neos\Media\Domain\Model\ImportedAsset;
 use Neos\Media\Domain\Repository\ImportedAssetRepository;
+use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 
 final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginalInterface, SupportsIptcMetadataInterface
@@ -56,6 +56,12 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      * @Flow\Inject(lazy=false)
      */
     protected $eelEvaluator;
+
+    /**
+     * @var UriFactoryInterface
+     * @Flow\Inject(lazy=false)
+     */
+    protected $uriFactory;
 
     /**
      * UnsplashAssetProxy constructor.
@@ -180,7 +186,7 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      */
     public function getThumbnailUri(): ?UriInterface
     {
-        return new Uri($this->getImageUrl(UnsplashImageSizeInterface::THUMB));
+        return $this->uriFactory->createUri($this->getImageUrl(UnsplashImageSizeInterface::THUMB));
     }
 
     /**
@@ -188,7 +194,7 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      */
     public function getPreviewUri(): ?UriInterface
     {
-        return new Uri($this->getImageUrl(UnsplashImageSizeInterface::REGULAR));
+        return $this->uriFactory->createUri($this->getImageUrl(UnsplashImageSizeInterface::REGULAR));
     }
 
     /**
