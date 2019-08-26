@@ -4,8 +4,7 @@
     "name": "dl/assetsource-unsplash",
     "license": "MIT",
     "require": {
-        "neos/neos": "^4.0 || ^5.0",
-        "neos/media": "*",
+        "neos/neos": "^5.0",
         "unsplash/unsplash": "^2.4",
         "behat/transliterator": "^1.2"
     },
