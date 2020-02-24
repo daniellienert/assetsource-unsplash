@@ -10,7 +10,7 @@ Install the package via composer
 
 ## How to use it
 
-1. Read the [Unsplash API guidelines](https://medium.com/unsplash/unsplash-api-guidelines-28e0216e6daa) carefully!
+1. Read the [Unsplash API guidelines](https://help.unsplash.com/en/articles/2511245-unsplash-api-guidelines) carefully!
 2. Register on [https://unsplash.com/developers](https://unsplash.com/developers) and get your API key.
 3. Configure the API key in the settings
 
