@@ -202,7 +202,7 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      */
     public function getImportStream()
     {
-        return fopen($this->photo->download(), 'r');
+        return fopen($this->photo->download(), 'rb');
     }
 
     /**
