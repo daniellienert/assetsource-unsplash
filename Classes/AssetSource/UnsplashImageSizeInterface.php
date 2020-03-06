@@ -11,9 +11,9 @@ namespace DL\AssetSource\Unsplash\AssetSource;
 
 interface UnsplashImageSizeInterface
 {
-    const RAW = 'raw';
-    const FULL = 'full';
-    const REGULAR = 'regular';
-    const SMALL = 'small';
-    const THUMB = 'thumb';
+    public const RAW = 'raw';
+    public const FULL = 'full';
+    public const REGULAR = 'regular';
+    public const SMALL = 'small';
+    public const THUMB = 'thumb';
 }

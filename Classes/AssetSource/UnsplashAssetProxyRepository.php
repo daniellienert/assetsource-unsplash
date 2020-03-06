@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace DL\AssetSource\Unsplash\AssetSource;
 
 /*
@@ -55,6 +56,7 @@ final class UnsplashAssetProxyRepository implements AssetProxyRepositoryInterfac
     /**
      * @return AssetProxyQueryResultInterface
      * @throws AssetSourceConnectionExceptionInterface
+     * @throws \Exception
      */
     public function findAll(): AssetProxyQueryResultInterface
     {
@@ -78,6 +80,7 @@ final class UnsplashAssetProxyRepository implements AssetProxyRepositoryInterfac
     /**
      * @param Tag $tag
      * @return AssetProxyQueryResultInterface
+     * @throws \Exception
      */
     public function findByTag(Tag $tag): AssetProxyQueryResultInterface
     {
@@ -86,6 +89,7 @@ final class UnsplashAssetProxyRepository implements AssetProxyRepositoryInterfac
 
     /**
      * @return AssetProxyQueryResultInterface
+     * @throws \Exception
      */
     public function findUntagged(): AssetProxyQueryResultInterface
     {

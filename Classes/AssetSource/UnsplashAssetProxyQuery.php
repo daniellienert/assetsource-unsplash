@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace DL\AssetSource\Unsplash\AssetSource;
 
 /*
@@ -114,9 +115,10 @@ final class UnsplashAssetProxyQuery implements AssetProxyQueryInterface
 
     /**
      * @return int
+     * @throws \Exception
      */
     public function count(): int
     {
-        throw new \Exception(__METHOD__ . ' is not yet implemented');
+        return $this->execute()->count();
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace DL\AssetSource\Unsplash\AssetSource;
 
 /*
@@ -91,11 +92,11 @@ final class UnsplashAssetProxyQueryResult implements AssetProxyQueryResultInterf
         /** @var Photo $photo */
         $photo = $this->unsplashQueryResultIterator->current();
 
-        if($photo instanceof Photo) {
+        if ($photo instanceof Photo) {
             return new UnsplashAssetProxy($photo, $this->assetSource);
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**
