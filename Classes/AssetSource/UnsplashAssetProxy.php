@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace DL\AssetSource\Unsplash\AssetSource;
 
 /*
@@ -186,7 +187,7 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
      */
     public function getThumbnailUri(): ?UriInterface
     {
-        return $this->uriFactory->createUri($this->getImageUrl(UnsplashImageSizeInterface::THUMB));
+        return $this->uriFactory->createUri($this->getImageUrl(UnsplashImageSizeInterface::SMALL));
     }
 
     /**
