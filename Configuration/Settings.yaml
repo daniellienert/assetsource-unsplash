@@ -4,6 +4,7 @@ Neos:
       unsplash:
         assetSource: 'DL\AssetSource\Unsplash\AssetSource\UnsplashAssetSource'
         assetSourceOptions:
+          icon: 'resource://DL.AssetSource.Unsplash/Public/Unsplash.svg'
           accessKey: ''
           utmSource: 'Neos CMS Unsplash Asset Source https://neos.io'
           copyRightNoticeTemplate: '${"Photo by <a href=\"https://unsplash.com/" + user.username + "\">" + user.name + "</a> on <a href=\"https://unsplash.com\">Unsplash</a>"}'

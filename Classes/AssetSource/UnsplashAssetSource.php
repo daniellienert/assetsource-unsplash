@@ -10,9 +10,12 @@ namespace DL\AssetSource\Unsplash\AssetSource;
  * source code.
  */
 
+use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Configuration\Exception\InvalidConfigurationException;
+use Neos\Flow\ResourceManagement\ResourceManager;
 use Neos\Media\Domain\Model\AssetSource\AssetProxyRepositoryInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetSourceInterface;
+
 use Neos\Media\Domain\Model\AssetSource\Neos\NeosAssetProxyRepository;
 use Crew\Unsplash;
 
@@ -34,6 +37,17 @@ final class UnsplashAssetSource implements AssetSourceInterface
     private $copyRightNoticeTemplate;
 
     /**
+     * @Flow\Inject
+     * @var ResourceManager
+     */
+    protected $resourceManager;
+
+    /**
+     * @var string
+     */
+    protected $iconPath;
+
+    /**
      * UnsplashAssetSource constructor.
      * @param string $assetSourceIdentifier
      * @param array $assetSourceOptions
@@ -43,6 +57,7 @@ final class UnsplashAssetSource implements AssetSourceInterface
     {
         $this->assetSourceIdentifier = $assetSourceIdentifier;
         $this->copyRightNoticeTemplate = $assetSourceOptions['copyRightNoticeTemplate'] ?? '';
+        $this->iconPath = $assetSourceOptions['icon'] ?? '';
 
         if (!isset($assetSourceOptions['accessKey']) || trim($assetSourceOptions['accessKey']) === '') {
             throw new InvalidConfigurationException(sprintf('Access Key for the %s data source not set.', $this->getLabel()), 1526326192);
@@ -113,5 +128,23 @@ final class UnsplashAssetSource implements AssetSourceInterface
     public function isReadOnly(): bool
     {
         return true;
+    }
+
+    /**
+     * Returns the resource path to Assetsources icon
+     *
+     * @return string
+     */
+    public function getIconUri(): string
+    {
+        return $this->resourceManager->getPublicPackageResourceUriByPath($this->iconPath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return 'Beautiful Free Images & Pictures | Unsplash. Visit https://unsplash.com/';
     }
 }
