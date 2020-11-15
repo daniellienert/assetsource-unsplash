@@ -17,6 +17,7 @@ use Behat\Transliterator\Transliterator;
 use Crew\Unsplash\Photo;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\AssetProxyInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\HasRemoteOriginalInterface;
+use Neos\Media\Domain\Model\AssetSource\AssetProxy\ProvidesOriginalUriInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\SupportsIptcMetadataInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetSourceInterface;
 use Neos\Media\Domain\Model\ImportedAsset;
@@ -24,7 +25,7 @@ use Neos\Media\Domain\Repository\ImportedAssetRepository;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 
-final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginalInterface, SupportsIptcMetadataInterface
+final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginalInterface, SupportsIptcMetadataInterface, ProvidesOriginalUriInterface
 {
     /**
      * @var Photo
@@ -182,20 +183,19 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
         return (int)$this->getProperty('height');
     }
 
-    /**
-     * @return null|UriInterface
-     */
     public function getThumbnailUri(): ?UriInterface
     {
         return $this->uriFactory->createUri($this->getImageUrl(UnsplashImageSizeInterface::SMALL));
     }
 
-    /**
-     * @return null|UriInterface
-     */
     public function getPreviewUri(): ?UriInterface
     {
         return $this->uriFactory->createUri($this->getImageUrl(UnsplashImageSizeInterface::REGULAR));
+    }
+
+    public function getOriginalUri(): ?UriInterface
+    {
+        return $this->uriFactory->createUri($this->getImageUrl(UnsplashImageSizeInterface::FULL));
     }
 
     /**
@@ -206,9 +206,6 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
         return fopen($this->photo->download(), 'rb');
     }
 
-    /**
-     * @return null|string
-     */
     public function getLocalAssetIdentifier(): ?string
     {
         return $this->importedAsset instanceof ImportedAsset ? $this->importedAsset->getLocalAssetIdentifier() : '';
@@ -233,10 +230,6 @@ final class UnsplashAssetProxy implements AssetProxyInterface, HasRemoteOriginal
         return $this->photo->__isset($propertyName) ? $this->photo->__get($propertyName) : null;
     }
 
-    /**
-     * @param string $size
-     * @return string
-     */
     protected function getImageUrl(string $size): string
     {
         $urls = $this->getProperty('urls');
