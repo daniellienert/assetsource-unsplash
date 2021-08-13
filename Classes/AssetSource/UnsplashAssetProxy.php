@@ -14,7 +14,7 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Eel\EelEvaluatorInterface;
 use Neos\Eel\Utility;
 use Behat\Transliterator\Transliterator;
-use Crew\Unsplash\Photo;
+use Unsplash\Photo;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\AssetProxyInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\HasRemoteOriginalInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\ProvidesOriginalUriInterface;

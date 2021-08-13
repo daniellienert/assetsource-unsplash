@@ -17,7 +17,7 @@ use Neos\Media\Domain\Model\AssetSource\AssetProxyRepositoryInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetSourceInterface;
 
 use Neos\Media\Domain\Model\AssetSource\Neos\NeosAssetProxyRepository;
-use Crew\Unsplash;
+use Unsplash;
 
 final class UnsplashAssetSource implements AssetSourceInterface
 {

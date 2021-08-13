@@ -10,8 +10,8 @@ namespace DL\AssetSource\Unsplash\AssetSource;
  * source code.
  */
 
-use Crew\Unsplash\ArrayObject;
-use Crew\Unsplash\Photo;
+use Unsplash\ArrayObject;
+use Unsplash\Photo;
 use Neos\Media\Domain\Model\AssetSource\AssetProxy\AssetProxyInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxyQueryInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxyQueryResultInterface;
