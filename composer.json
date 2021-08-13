@@ -5,7 +5,7 @@
     "license": "MIT",
     "require": {
         "neos/neos": "^5.0 || ^7.0",
-        "unsplash/unsplash": "^2.4",
+        "unsplash/unsplash": "^3.0",
         "behat/transliterator": "^1.2"
     },
     "autoload": {

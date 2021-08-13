@@ -13,7 +13,7 @@ namespace DL\AssetSource\Unsplash\AssetSource;
 use Neos\Media\Domain\Model\AssetSource\AssetProxyQueryInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetProxyQueryResultInterface;
 use Neos\Media\Domain\Model\AssetSource\AssetSourceConnectionExceptionInterface;
-use Crew\Unsplash;
+use Unsplash;
 
 final class UnsplashAssetProxyQuery implements AssetProxyQueryInterface
 {
