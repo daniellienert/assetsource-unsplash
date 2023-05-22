@@ -6,17 +6,27 @@
 
 Install the package via composer
 
-    composer require dl/assetsource-unsplash
-
+```bash
+composer require dl/assetsource-unsplash
+```
 ## How to use it
 
 1. Read the [Unsplash API guidelines](https://help.unsplash.com/en/articles/2511245-unsplash-api-guidelines) carefully!
-2. Register on [https://unsplash.com/developers](https://unsplash.com/developers) and get your API key.
-3. Configure the API key in the settings
+2. Register on [https://unsplash.com/developers](https://unsplash.com/developers) and get your Access key.
+3. Configure the Access key in the settings:
+
+```yaml
+Neos:
+ Media:
+  assetSources:
+    unsplash:
+     assetSourceOptions:
+       accessKey: your-access-key
+```
 
 Please take care of the correct attribution of used photos in the frontend. 
 
-![Media Browser view](https://user-images.githubusercontent.com/642226/40078557-3bff9fee-5885-11e8-9d84-de031e1b8620.png)
+![Media Browser view](Documentation/media-browser-view.png)
 
 ## Configuration
 
